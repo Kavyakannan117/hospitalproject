@@ -1,0 +1,16 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card">
+
+<h5 class="card-header">Confirm Appointment to Dr.{{appoint.drName}}</h5>
+    <div class="card-body">
+<form action=" " method="post">
+    {% csrf_token %}
+    <p class="card-text"> Do you want to confirm this ?</p>
+    <input type="submit" class="btn btn-success" value="Confirm ">
+</form>
+</div>
+</div>
+{% endblock %}

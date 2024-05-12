@@ -1,0 +1,18 @@
+{% extends 'admin/index.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Doctor Details</h1>
+
+<div class="card" style="width: 18rem;">
+
+<div class="card-body">
+    <p class="card-text"> {{doctor.name}}</p>
+    <p>{{doctor.education}}</p>
+    <p>{{doctor.descrption}}</p>
+    <p>{{doctor.department}}</p>
+    <p>{{doctor.mobile}}</p>
+</div>
+</div>
+
+{% endblock %}

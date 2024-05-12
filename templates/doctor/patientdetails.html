@@ -1,0 +1,20 @@
+{% extends 'doctor/basedr.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Patient Details</h1>
+
+<div class="card" style="width: 18rem;">
+
+<div class="card-body">
+    <p class="card-text">
+    <p>Patient Name:{{patient.patient_records}}</p>
+    <p>History:{{patient.medical_history}}</p>
+    <p>Treatment:{{patient.treatment_plans}}</p>
+    <p>Decision:{{patient.decision_making}}</p>
+</div>
+</div>
+
+{% endblock %}
+
+

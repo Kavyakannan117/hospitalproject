@@ -1,0 +1,17 @@
+{% extends 'patient/basepat.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3"><h3> Create Appointments </h3></div>
+
+</div>
+
+<form action=" " method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" class="btn btn-primary">
+
+</form>
+
+{% endblock %}
