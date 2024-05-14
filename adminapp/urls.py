@@ -27,5 +27,7 @@ urlpatterns=[
     path('facilitylist/',views.list_facility,name="facilitylist"),
 
     path('createbill/',views.create_Bill,name="createbill"),
+    path('logout/',views.logout,name='logout'),
+
 
 ]
