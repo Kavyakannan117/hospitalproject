@@ -26,4 +26,7 @@ urlpatterns=[
     path('updateprescption/<int:patient_id>/',views.updateprescrption,name="updateprescption"),
     path('deleteprescption/<int:patient_id>/',views.deleteprescrption,name="deleteprescption"),
 
+    path('logoutdr/',views.log_out,name='logoutdr'),
+
+
 ]
