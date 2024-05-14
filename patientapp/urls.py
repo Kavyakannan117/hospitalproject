@@ -18,7 +18,7 @@ urlpatterns=[
 
     path('listhealth/',views.listTips,name="listhealth"),
     path('listbill/',views.listBill,name="listbill"),
-
-
+    
+    path('logoutpatient/',views.logOut,name='logoutpat'),
 
 ]
