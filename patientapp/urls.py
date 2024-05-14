@@ -21,4 +21,8 @@ urlpatterns=[
     
     path('logoutpatient/',views.logOut,name='logoutpat'),
 
+    path('create-checkout-session/',views.create_checkout_session,name='create-checkout-session'),
+    path('cancel/',views.cancel,name='cancel'),
+
+
 ]
