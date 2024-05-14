@@ -201,3 +201,9 @@ def deleteprescrption(request,patient_id):
         patient.delete()
         return redirect('patientlist')
     return render(request,'doctor/deleteprescrption.html',{'patient':patient})
+
+
+def log_out(request):
+        auth.logout(request)
+        return redirect('home')
+
