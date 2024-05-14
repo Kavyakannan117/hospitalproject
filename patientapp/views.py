@@ -148,3 +148,8 @@ def listTips(request):
         page=paginator.page(page_number.num_pages)
 
     return render(request,'patient/healthlist.html',{'patient':patient,'page':page})
+
+def logOut(request):
+        auth.logout(request)
+        return redirect('home')
+
