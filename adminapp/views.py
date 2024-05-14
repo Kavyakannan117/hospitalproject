@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
+from django.http import HttpResponse
 
 from doctorapp.forms import DoctorForm
 from doctorapp.models import Doctor
@@ -16,7 +17,8 @@ from django.shortcuts import render, redirect
 # Create your views here.
 def home_view(request):
     if request.user.is_authenticated:
-      return render(request,'admin/home.html')
+                return HttpResponse('')
+    return render(request,'admin/home.html')
 
 def index_view(request):
     if request.user.is_authenticated:
@@ -200,3 +202,10 @@ def create_Bill(request):
     else:
         form = BiilingForm()
     return render(request,'admin/create-bill.html',{'form':form ,'patient':patient})
+
+def logout(request):
+        auth.logout(request)
+        return redirect('home')
+
+
+
