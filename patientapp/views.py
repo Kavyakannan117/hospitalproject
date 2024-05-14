@@ -78,10 +78,43 @@ def add_appiontment(request):
         form = AppointmentForm()
     return render(request,'patient/patientappoint.html',{'form':form ,'appoint':appoint})
 
+def create_checkout_session(request):
+
+    default_price_inr = 200 * 100  # Stripe expects the amount in cents
+
+    if request.method == 'POST':
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'INR',
+                        'unit_amount': default_price_inr,
+                        'product_data': {
+                            'name': 'Product Name'  
+                        },
+                    },
+                    'quantity': 1  
+                }
+            ],
+            mode='payment',
+            success_url=request.build_absolute_uri(reverse('success')),
+            cancel_url=request.build_absolute_uri(reverse('cancel'))
+        )
+
+        return redirect(checkout_session.url, code=303)
+
+
 def success(request):
     appoint=Appointment.objects.all()
     appoint.delete()
     return render(request,'patient/success.html')
+
+def cancel(request):
+
+    return render(request,'patient/cancel.html')
 
 
 def create_Patdetails(request):
