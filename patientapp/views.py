@@ -84,7 +84,7 @@ def add_appiontment(request):
             return redirect('/success')
     else:
         form = AppointmanageForm()
-    return render(request,'admin/add_appointment.html',{'form':form ,'patients':patients,'doctors':doctors})
+    return render(request,'patient/patientappoint.html',{'form':form ,'patients':patients,'doctors':doctors})
 
 def create_checkout_session(request):
 
@@ -125,29 +125,29 @@ def cancel(request):
     return render(request,'patient/cancel.html')
 
 def create_Patdetails(request):
-    doctors=PatientManagement.objects.all()
+    patient=MedicalHistory.objects.all()
     if request.method == "POST":
-        form=PatientManageForm(request.POST,files=request.FILES)
+        form=MedHistoryForm(request.POST,files=request.FILES)
         print(form)
 
         if form.is_valid():
             form.save()
-            return redirect('create-detailpat')
+            return redirect('create-patient')
     else:
-        form = PatientManageForm()
-    return render(request,'doctor/create-patientdetails.html',{'form':form ,'doctors':doctors})
+        form = MedHistoryForm()
+    return render(request,'patient/create-patdetails.html',{'form':form ,'patient':patient})
 
-def listPatient(request):
-    doctors=PatientManagement.objects.all()
+def listRecords(request):
+    patient=MedicalHistory.objects.all()
 
-    paginator=Paginator(doctors,3)
+    paginator=Paginator(patient,3)
     page_number=request.GET.get('page')
     try:
         page=paginator.get_page(page_number)
     except EmptyPage:
         page=paginator.page(page_number.num_pages)
 
-    return render(request,'doctor/listpatients.html',{'doctors':doctors,'page':page})
+    return render(request,'patient/listofrecords.html',{'patient':patient,'page':page})
 
 
 
