@@ -1,8 +1,15 @@
+import stripe
+from django.conf import settings
+
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
+from adminapp.forms import AppointmanageForm
+from doctorapp.forms import PatientManageForm
+from doctorapp.models import Doctor, PatientManagement
 from .models import Patient,Appointment,MedicalHistory,HealthEducation,Billing
 from .forms import PatientForm,AppointmentForm,MedHistoryForm,HealthForm,BiilingForm
 
