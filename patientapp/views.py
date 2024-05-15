@@ -66,21 +66,22 @@ def create_patient(request):
     return render(request,'patient/create-patient.html',{'form':form ,'patients':patients})
 
 def add_appiontment(request):
-    appoint=Appointment.objects.all()
+    doctors=Doctor.objects.all()
+    patients=Patient.objects.all()
     if request.method == "POST":
-        form=AppointmentForm(request.POST,files=request.FILES)
+        form=AppointmanageForm(request.POST,files=request.FILES)
         print(form)
 
         if form.is_valid():
             form.save()
-            return redirect('success')
+            return redirect('/success')
     else:
-        form = AppointmentForm()
-    return render(request,'patient/patientappoint.html',{'form':form ,'appoint':appoint})
+        form = AppointmanageForm()
+    return render(request,'admin/add_appointment.html',{'form':form ,'patients':patients,'doctors':doctors})
 
 def create_checkout_session(request):
 
-    default_price_inr = 200 * 100  # Stripe expects the amount in cents
+    default_price_inr = 300 * 100  # Stripe expects the amount in cents
 
     if request.method == 'POST':
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -116,31 +117,30 @@ def cancel(request):
 
     return render(request,'patient/cancel.html')
 
-
 def create_Patdetails(request):
-    patient=MedicalHistory.objects.all()
+    doctors=PatientManagement.objects.all()
     if request.method == "POST":
-        form=MedHistoryForm(request.POST,files=request.FILES)
+        form=PatientManageForm(request.POST,files=request.FILES)
         print(form)
 
         if form.is_valid():
             form.save()
-            return redirect('listrecords')
+            return redirect('create-detailpat')
     else:
-        form = MedHistoryForm()
-    return render(request,'patient/create-patdetails.html',{'form':form ,'patient':patient})
+        form = PatientManageForm()
+    return render(request,'doctor/create-patientdetails.html',{'form':form ,'doctors':doctors})
 
-def listRecords(request):
-    patient=MedicalHistory.objects.all()
+def listPatient(request):
+    doctors=PatientManagement.objects.all()
 
-    paginator=Paginator(patient,3)
+    paginator=Paginator(doctors,3)
     page_number=request.GET.get('page')
     try:
         page=paginator.get_page(page_number)
     except EmptyPage:
         page=paginator.page(page_number.num_pages)
 
-    return render(request,'patient/listofrecords.html',{'patient':patient,'page':page})
+    return render(request,'doctor/listpatients.html',{'doctors':doctors,'page':page})
 
 
 
