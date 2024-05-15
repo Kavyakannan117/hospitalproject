@@ -1,4 +1,3 @@
-from django.contrib.auth.views import LoginView
 from django.urls import path
 from .import views
 
@@ -12,7 +11,7 @@ urlpatterns=[
     path('success/',views.success,name='success'),
     path('patdetails',views.create_Patdetails,name='create-detailpat'),
 
-    path('patientlist/',views.listPatient,name='patientlist'),
+    path('listrecords/',views.listRecords,name='listrecords'),
 
     path('healthcreate',views.create_Health,name='healthcreate'),
 
